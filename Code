@@ -1,0 +1,51 @@
+int motor_rt_F = 8;
+int motor_rt_B = 9;
+int motor_lft_F = 10;
+int motor_lft_B = 11;
+int motor_rt = 5;
+int motor_lft = 2;
+int motor_rt_state = 0;
+int motor_lft_state = 0;
+
+void setup()
+{
+  pinMode(motor_rt_F, OUTPUT);
+  pinMode(motor_rt_B, OUTPUT);
+  pinMode(motor_lft_F, OUTPUT);
+  pinMode(motor_lft_B, OUTPUT);
+  pinMode(motor_rt, OUTPUT);
+  pinMode(motor_lft, OUTPUT);
+}
+
+void loop()
+{
+  bump_rt_state = digitalRead(bumper_rt);
+  bump_lft_state = digitalRead(bumper_lft);
+  
+  if (bump_rt_state == HIGH)
+  {
+   bump();
+   digitalWrite(motor_rt_F, HIGH);
+   delay(100);
+   digitalWrite(motor_rt_f, HIGH);
+   }else{digitalWrite(motor_rt_F, HIGH); digitalWrite(motor_lft_F, HIGH);}
+   
+   if(bump_lft_state == HIGH)
+   {
+    bump();
+    digitalWrite(motor_lft_F, HIGH);
+    delay(100);
+    digitalWrite(motor_rt_F, HIGH);
+    }else{digitalWrite(motor_rt_F, HIGH); digitalWrite(motor_lft_F, HIGH);}
+    
+  }
+  
+void bump(){
+digitalWrite(motor_rt_F, LOW);
+digitalWrite(motor_lft_F, LOW);
+digitalWrite(motor_rt_B, HIGH);
+digitalWrite(motor_lft_B, HIGH);
+delay(500);
+digitalWrite(motor_rt_B, LOW);
+digitalWrite(motor_lft_B, LOW);
+}
